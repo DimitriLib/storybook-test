@@ -1,0 +1,59 @@
+{
+  "projectType": "library",
+  "root": "libs/lib-test",
+  "sourceRoot": "libs/lib-test/src",
+  "prefix": "storybook",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/lib-test"],
+      "options": {
+        "jestConfig": "libs/lib-test/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/lib-test/src/**/*.ts",
+          "libs/lib-test/src/**/*.html"
+        ]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/lib-test/.storybook"
+        },
+        "projectBuildConfig": "storybooktest:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/lib-test",
+        "config": {
+          "configFolder": "libs/lib-test/.storybook"
+        },
+        "projectBuildConfig": "storybooktest:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "lib-test": "libs/lib-test",
     "storybooktest": "apps/storybooktest",
     "storybooktest-e2e": "apps/storybooktest-e2e"
   }
